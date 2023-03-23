@@ -25,6 +25,9 @@ export class InventoryComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getInventory()
+  }
+  getInventory(){
     this.api.getInventory().subscribe(data => {
       this.inventoryData = data.Data
     })
@@ -36,6 +39,8 @@ export class InventoryComponent implements OnInit {
     this.api.addInventory(this.inventoryGroup.value).subscribe(data => {
       console.log(data);
       this.messageService.add({ severity: 'success', summary: 'Success', detail: data.Message });
+      this.visible=false;
+      this.getInventory()
     })
   }
 }

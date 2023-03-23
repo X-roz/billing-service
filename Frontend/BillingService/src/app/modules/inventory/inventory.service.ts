@@ -10,7 +10,7 @@ export class InventoryService {
   private BaseAPiUrl = environment.apiURL;
   route  = {
     addInventory: 'billing-service/add-item',
-    getInventory: 'billing-service/get-item'
+    getInventory: 'billing-service/get-items'
   }
   constructor(private http: HttpClient) { }
   
