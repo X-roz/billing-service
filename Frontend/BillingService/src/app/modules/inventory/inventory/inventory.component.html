@@ -1,0 +1,20 @@
+<section class="button-section">
+    <button class="btn-primary" (click)="addInventory()">Add Inventory</button>
+</section>
+<p-dialog header="Add Inventory" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '50vw'}">
+    <form class="two-col-formgrid" [formGroup]="inventoryGroup" (ngSubmit)="submitInventory()">
+        <label for="">Name</label>
+        <input type="text" formControlName="name">
+        <label for="tax">Tax</label>
+        <input type="number" formControlName="tax">
+        <label for="">Price</label>
+        <input type="number" formControlName="price">
+        <label for="">Quantity</label>
+        <input type="number" formControlName="quantity">
+        <div class="button-row">
+            <button class="btn-primary" type="submit">Add</button>
+            <button class="btn-secondary">Cancel</button>
+        </div>
+    </form>
+</p-dialog>
+<p-table [value]="inventoryData" *ngIf="inventoryData.length>0"></p-table>

@@ -1,0 +1,32 @@
+:host{
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    grid-template-rows:5rem min(calc(100vh - 5rem));
+}
+header{
+    grid-column: span 2;
+    box-shadow: var(--box-shadow);
+    z-index: 1;
+}
+nav{
+    box-shadow: var(--box-shadow);
+    z-index: 1; 
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    button{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-direction: column;
+        width: 100%;
+        cursor: pointer;
+        &.active{
+            color: var(--tertiary-color);
+        }
+    }
+
+}

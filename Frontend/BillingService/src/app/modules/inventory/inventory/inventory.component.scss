@@ -1,0 +1,12 @@
+:host{
+    margin: var(--spacing)
+}
+.button-section{
+    display: flex;
+    justify-content: end;
+}
+.button-row{
+    display: flex;
+    justify-content: space-around;
+    margin: var(--spacing);
+}

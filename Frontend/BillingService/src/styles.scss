@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --box-shadow: 0 3px 7.7px 0.3px rgb(0 0 0/13%);
+    --tertiary-color: #43b02a;
+    --hover-color: #84bd00;
+    --spacing: 1rem;
+}
+body{
+    margin: 0;
+}
+ul{
+    padding: 0;
+    list-style-type: none;
+}
+.btn-tertiary{
+    border: none;
+    background: none;
+}
+.two-col-formgrid{
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-row-gap: 15px;
+    grid-column-gap: 30px;
+    width: 50%;
+    margin-inline: auto;
+  }
+  .two-col-formgrid label{
+    text-align: end;
+    padding-top: 0.5rem;
+    padding-bottom: calc(0.5rem + 2px);
+    white-space: nowrap;
+  }
+  .two-col-formgrid label.checkField{
+    margin-right: 0
+  }
+  .two-col-formgrid .button-row{
+    grid-column: span 2;
+  }
+  .two-col-formgrid .box{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .two-col-formgrid .error-danger {
+    color: red;
+    font-size: 0.9rem;
+  }
+  .btn-primary {
+    padding: 0.8rem 2rem;
+    border-radius: 22.5px;
+    color: white;
+    font-size: 1rem;
+    background-color: var(--tertiary-color);
+    cursor: pointer;
+    border: 1px solid var(--tertiary-color);
+    &:hover{
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-color);
+    }
+    &:disabled{
+        background-color: var(--tertiary-color);
+        opacity: 0.4;
+    }
+  }
+  .btn-secondary {
+    padding: 0.8rem 2rem;
+    border-radius: 22.5px;
+    border: solid 2px var(--tertiary-color);
+    background-color: white;
+    cursor: pointer;
+    color: var(--tertiary-color);
+    font-size: 1rem;
+    &:hover {
+        border: solid 2px var(--hover-color);
+        color: var(--hover-color);
+    }
+    &:disabled{
+        background-color: var(--tertiary-color);
+        opacity: 0.4;
+    }
+  }
+  input {
+    padding: 0.5rem 0;
+    line-height: initial;
+    width: 100%;
+    max-width: 500px;
+    font-family: inherit;
+    color: #333;
+    font-size: 1rem;
+    border: 0;
+    /* border-top: 2px solid #FFFFFF; */
+    border-bottom: 2px solid #ccc;
+    outline: 0;
+  }
