@@ -17,4 +17,33 @@
         </div>
     </form>
 </p-dialog>
-<p-table [value]="inventoryData" *ngIf="inventoryData.length>0"></p-table>
+<p-table #dt1 [value]="inventoryData" *ngIf="inventoryData.length>0" [globalFilterFields]="[
+    'name',
+    'tax',
+    'price',
+    'quantity',
+]" [paginator]="inventoryData.length > 10" [rows]="10" [responsive]="true" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="['10', '40', '100']"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} record(s)">
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="w-25" pSortableColumn="name">Name</th>
+            <th class="w-25" pSortableColumn="tax">Tax</th>
+            <th class="w-25" pSortableColumn="price">Price</th>
+            <th class="w-25" pSortableColumn="quantity">Quantity</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-inventory>
+        <tr>
+            <td>{{ inventory.name }}</td>
+            <td>{{ inventory.tax }}</td>
+            <td>{{ inventory.price }}</td>
+            <td>{{ inventory.quantity }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td [attr.colspan]="4">No records found</td>
+        </tr>
+    </ng-template>
+</p-table>
