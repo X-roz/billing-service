@@ -15,6 +15,6 @@ func main() {
 
 	db.ConnectToDb()
 
-	route.Init(e.Group("/billing-service"))
+	route.Init(e.Group("/"))
 	e.Start(":9000")
 }

@@ -4,8 +4,15 @@ export interface addInventoryPayloadI{
     price: number,
     quantity: number
 }
-export interface apiResponseI<T>{
+export interface apiResponseI<T={}>{
     Success: boolean;
     Message: string;
-    Data: T
+    Data?: T
+}
+export interface updateInventoryPayloadI{
+  "ID":number,
+  "name":string,
+  "tax": number,
+  "price":number, 
+  "quantity":number
 }

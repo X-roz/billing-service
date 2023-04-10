@@ -1,4 +1,4 @@
-package items
+package inventory
 
 import (
 	"billing-service/internals/model"
@@ -54,23 +54,21 @@ func (h *handler) RetrieveItems(c echo.Context) error {
 
 func (h *handler) UpdateItem(c echo.Context) error {
 
-	name := c.QueryParam("name")
+	d := new(model.ItemDetails)
+	c.Bind(d)
 
-	query := map[string]string{"name": name}
+	query := map[string]string{"id": strconv.FormatUint(uint64(d.ID), 32)}
 	ib, _ := h.service.GetItems(query)
 	if len(*ib) <= 0 {
 		return response.RespErr(c, "Items not found", errors.New("please verify the item name"))
 	}
-
-	d := new(model.ItemDetails)
-	c.Bind(d)
 
 	err := h.service.UpdateItem(query, d)
 	if err != nil {
 		return response.RespErr(c, "Update Item failed", err)
 	}
 
-	return response.RespSuccess(c, "Item updatsed successfully")
+	return response.RespSuccess(c, "Item updated successfully")
 }
 
 func (h *handler) UpdateQty(c echo.Context) error {
@@ -95,4 +93,26 @@ func (h *handler) UpdateQty(c echo.Context) error {
 	}
 
 	return response.RespSuccess(c, "Item Qty updated successfully")
+}
+
+func (h *handler) UpdateBulk(c echo.Context) error {
+
+	d := new([]model.ItemDetails)
+	c.Bind(d)
+
+	for _, i := range *d {
+		query := map[string]string{"id": strconv.FormatUint(uint64(i.ID), 32)}
+		ib, _ := h.service.GetItems(query)
+		if len(*ib) <= 0 {
+			return response.RespErr(c, "Items not found", errors.New("please verify the item name"))
+		}
+
+		err := h.service.UpdateItem(query, &i)
+		if err != nil {
+			return response.RespErr(c, "Update Item failed", err)
+		}
+	}
+
+	return response.RespSuccess(c, "Item updated successfully")
+
 }

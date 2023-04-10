@@ -1,4 +1,4 @@
-package items
+package inventory
 
 import (
 	"billing-service/internals/model"

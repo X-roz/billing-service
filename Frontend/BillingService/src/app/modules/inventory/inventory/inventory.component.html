@@ -1,4 +1,5 @@
 <section class="button-section">
+    <input type="text" [formControl]="searchControl" placeholder="Search by name">
     <button class="btn-primary" (click)="addInventory()">Add Inventory</button>
 </section>
 <p-dialog header="Add Inventory" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false" [style]="{width: '50vw'}">
@@ -24,21 +25,70 @@
     'quantity',
 ]" [paginator]="inventoryData.length > 10" [rows]="10" [responsive]="true" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="['10', '40', '100']"
+    dataKey="ID" editMode="row"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} record(s)">
     <ng-template pTemplate="header">
         <tr>
-            <th class="w-25" pSortableColumn="name">Name</th>
-            <th class="w-25" pSortableColumn="tax">Tax</th>
-            <th class="w-25" pSortableColumn="price">Price</th>
-            <th class="w-25" pSortableColumn="quantity">Quantity</th>
+            <th pSortableColumn="name">Name</th>
+            <th pSortableColumn="tax">Tax</th>
+            <th pSortableColumn="price">Price</th>
+            <th pSortableColumn="quantity">Quantity
+                <p-columnFilter type="numeric" field="quantity" [showOperator]="false" display="menu"></p-columnFilter>
+            </th>
+            <th>
+                Action
+            </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-inventory>
-        <tr>
-            <td>{{ inventory.name }}</td>
-            <td>{{ inventory.tax }}</td>
-            <td>{{ inventory.price }}</td>
-            <td>{{ inventory.quantity }}</td>
+    <ng-template pTemplate="body" let-inventory let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="inventory">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="inventory.name">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inventory.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="number" [(ngModel)]="inventory.tax">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inventory.tax}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="number" [(ngModel)]="inventory.price">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inventory.price}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="number" [(ngModel)]="inventory.quantity">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{inventory.quantity}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <div class="flex align-items-center justify-content-center gap-2">
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(inventory)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" class="p-button-rounded p-button-text p-button-danger"></button>
+                </div>
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">

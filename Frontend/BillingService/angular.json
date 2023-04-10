@@ -110,5 +110,8 @@
       }
     }
   },
-  "defaultProject": "BillingService"
+  "defaultProject": "BillingService",
+  "cli": {
+    "analytics": "e368135b-2164-4ada-9f54-f803facf8fef"
+  }
 }
