@@ -10,7 +10,6 @@ export class InventoryService {
   private BaseAPiUrl = environment.apiURL;
   route  = {
     addInventory: 'inventory/add-item',
-    getInventory: 'inventory/get-items',
     updateInventory: 'inventory/update-item'
   }
   constructor(private http: HttpClient) { }
@@ -18,10 +17,6 @@ export class InventoryService {
   addInventory(payload: addInventoryPayloadI){
     const url = this.BaseAPiUrl + this.route.addInventory
     return this.http.post<apiResponseI<string>>(url,payload)
-  }
-  getInventory(){
-    const url = this.BaseAPiUrl + this.route.getInventory
-    return this.http.get<apiResponseI<addInventoryPayloadI[]>>(url)
   }
   updateInventory(payload: updateInventoryPayloadI){
     const url = this.BaseAPiUrl + this.route.updateInventory;

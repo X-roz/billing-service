@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { addInventoryPayloadI, updateInventoryPayloadI } from '../inventory.model';
 import { InventoryService } from '../inventory.service';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'kcs-inventory',
@@ -18,6 +19,7 @@ export class InventoryComponent implements OnInit {
   searchControl: FormControl;
   constructor(private fb: FormBuilder, 
     private api: InventoryService, 
+    private commonApi: ApiService,
     private messageService: MessageService) {
     this.searchControl = this.fb.control('')
     this.inventoryGroup = this.fb.group({
@@ -35,7 +37,7 @@ export class InventoryComponent implements OnInit {
     })
   }
   getInventory(){
-    this.api.getInventory().subscribe(data => {
+    this.commonApi.getInventory().subscribe(data => {
       this.inventoryData = data.Data!
     })
   }

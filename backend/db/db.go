@@ -25,7 +25,12 @@ func ConnectToDb() {
 	migrateflag := flag.Bool("migrate", true, "Select the migrateDb is need to happen or not")
 	flag.Parse()
 	if *migrateflag {
-		Db.AutoMigrate(&model.ItemDetails{})
+		Db.AutoMigrate(&model.Inventory{})
+		Db.AutoMigrate(model.Customer{})
+		Db.AutoMigrate(model.SalesDetails{})
+		Db.AutoMigrate(model.SalesBilling{})
+		// Db.AutoMigrate(model.ServiceDetails{})
+		// Db.AutoMigrate(model.ServiceBilling{})
 	}
 }
 

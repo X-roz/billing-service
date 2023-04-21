@@ -92,3 +92,10 @@ ul{
     border-bottom: 2px solid #ccc;
     outline: 0;
   }
+  p-dropdown,.p-dropdown.p-component{
+    width: 100%;
+    max-width: 300px;
+  }
+  .p-datatable .p-datatable-footer{
+    text-align: end;
+  }

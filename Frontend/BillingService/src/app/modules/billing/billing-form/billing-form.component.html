@@ -1,0 +1,71 @@
+<form [formGroup]="salesFormGroup" class="form-grid" (ngSubmit)="addSales()">
+    <fieldset formGroupName="salesDetails">
+        <legend>Sales Details</legend>
+        <label>
+            Name
+            <p-dropdown [options]="inventoryOptions" formControlName="Name"
+            optionLabel="Text" optionValue="Value" placeholder="select"></p-dropdown>
+        </label>
+        <label>
+            Tax
+            <input type="text" formControlName="tax">
+        </label>
+        <label>
+            Price
+            <input type="text" formControlName="price">
+        </label>
+        <label>
+            Quantity
+            <input type="number" formControlName="quantity">
+        </label>
+        <label>
+            Total
+            <input type="number" formControlName="total">
+        </label>
+    </fieldset>
+    <fieldset formGroupName="customerDetails">
+        <legend>Customer Details</legend>
+        <label>Name
+            <input type="text" formControlName="customerName">
+        </label>
+        <label>PhoneNumber
+            <input type="number" maxlength="10" formControlName="customerPhoneNumber">
+        </label>
+    </fieldset>
+    <p>
+        <button type="submit" class="btn-primary">Add</button>
+    </p>
+</form>
+<ng-container *ngIf="salesData.length > 0">
+    <p-table [value]="salesData">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Tax</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-sales>
+            <tr>
+                <td>{{ sales.Name }}</td>
+                <td>{{ sales.price }}</td>
+                <td>{{ sales.tax }}</td>
+                <td>{{ sales.quantity }}</td>
+                <td>{{ sales.total }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <dl>
+                <dt>Summary</dt>
+                <dd>
+                    {{summaryTotal}}
+                </dd>
+            </dl> 
+        </ng-template>
+    </p-table>
+    <p>
+        <button (click)="submitSalesBill()" class="btn-primary">Submit</button>
+    </p>
+</ng-container>

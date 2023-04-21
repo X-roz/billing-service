@@ -6,9 +6,9 @@ import (
 )
 
 type Service interface {
-	AddItems(*model.ItemDetails) error
-	GetItems(interface{}) (*[]model.ItemDetails, error)
-	UpdateItem(interface{}, *model.ItemDetails) error
+	AddItems(*model.Inventory) error
+	GetItems(interface{}) (*[]model.Inventory, error)
+	UpdateItem(interface{}, *model.Inventory) error
 	UpdateQty(interface{}, int64) error
 }
 
@@ -20,15 +20,15 @@ func NewService() *service {
 	return &service{repository.NewItemsConn()}
 }
 
-func (s *service) AddItems(data *model.ItemDetails) error {
+func (s *service) AddItems(data *model.Inventory) error {
 	return s.ItemsRepository.AddItems(data)
 }
 
-func (s *service) GetItems(query interface{}) (*[]model.ItemDetails, error) {
+func (s *service) GetItems(query interface{}) (*[]model.Inventory, error) {
 	return s.ItemsRepository.GetItems(query)
 }
 
-func (s *service) UpdateItem(query interface{}, data *model.ItemDetails) error {
+func (s *service) UpdateItem(query interface{}, data *model.Inventory) error {
 	return s.ItemsRepository.UpdateItem(query, data)
 }
 

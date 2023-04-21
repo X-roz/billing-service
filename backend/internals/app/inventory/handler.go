@@ -19,7 +19,7 @@ func NewHandler() *handler {
 
 func (h *handler) AddItems(c echo.Context) error {
 
-	d := new(model.ItemDetails)
+	d := new(model.Inventory)
 	c.Bind(d)
 
 	query := map[string]string{"name": d.Name}
@@ -54,7 +54,7 @@ func (h *handler) RetrieveItems(c echo.Context) error {
 
 func (h *handler) UpdateItem(c echo.Context) error {
 
-	d := new(model.ItemDetails)
+	d := new(model.Inventory)
 	c.Bind(d)
 
 	query := map[string]string{"id": strconv.FormatUint(uint64(d.ID), 32)}
@@ -97,7 +97,7 @@ func (h *handler) UpdateQty(c echo.Context) error {
 
 func (h *handler) UpdateBulk(c echo.Context) error {
 
-	d := new([]model.ItemDetails)
+	d := new([]model.Inventory)
 	c.Bind(d)
 
 	for _, i := range *d {

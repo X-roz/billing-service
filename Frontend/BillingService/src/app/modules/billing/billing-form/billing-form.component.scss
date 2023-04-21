@@ -1,0 +1,15 @@
+.form-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+label{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+dl{
+    margin: 0;
+    display: flex;
+    justify-content: end;
+    margin-right: 60px;
+}

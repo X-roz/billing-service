@@ -46,5 +46,5 @@ func RespErr(c echo.Context, message string, errData error) error {
 		Message: message,
 		ErrData: errData.Error(),
 	}
-	return c.JSON(http.StatusOK, response)
+	return c.JSON(http.StatusBadRequest, response)
 }

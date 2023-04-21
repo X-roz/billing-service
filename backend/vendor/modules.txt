@@ -55,10 +55,12 @@ golang.org/x/text/unicode/norm
 # golang.org/x/time v0.3.0
 ## explicit
 golang.org/x/time/rate
+# gorm.io/datatypes v1.2.0
+## explicit; go 1.18
 # gorm.io/driver/sqlite v1.4.4
 ## explicit; go 1.14
 gorm.io/driver/sqlite
-# gorm.io/gorm v1.24.6
+# gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 ## explicit; go 1.16
 gorm.io/gorm
 gorm.io/gorm/callbacks
