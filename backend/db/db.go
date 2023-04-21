@@ -29,8 +29,8 @@ func ConnectToDb() {
 		Db.AutoMigrate(model.Customer{})
 		Db.AutoMigrate(model.SalesDetails{})
 		Db.AutoMigrate(model.SalesBilling{})
-		// Db.AutoMigrate(model.ServiceDetails{})
-		// Db.AutoMigrate(model.ServiceBilling{})
+		Db.AutoMigrate(model.ServiceDetails{})
+		Db.AutoMigrate(model.ServiceBilling{})
 	}
 }
 
